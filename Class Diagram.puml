@@ -1,0 +1,47 @@
+@startuml
+
+class Landing_page {
+}
+
+class AlegeOperator {
+memorare()
+}
+AlegeOperator "1" --* "1" Landing_page
+
+class InputTablou {
+memorare()
+}
+InputTablou "1" --* "1" Landing_page
+
+class StabilesteReferinta {
+afisare_element()
+}
+StabilesteReferinta "1" --* "1" Landing_page
+
+class CautaReferinta {
+set_de_numere_introduse
+valoare_de_referinta_introdusa
+operator_de_comparatie_selectat
+cauta()
+}
+CautaReferinta "1" --* "1" Landing_page
+
+class element_gasit {
+}
+element_gasit "1...n" --* "1" Landing_page
+
+class mesaj {
+}
+mesaj "1" --* "1" Landing_page
+
+class Reset {
+}
+Reset "1" --* "1" Landing_page
+
+class valoare_default {
+}
+valoare_default "1" --* "1" AlegeOperator
+valoare_default "1" --* "1" StabilesteReferinta
+valoare_default "1" --* "1" InputTablou
+
+@enduml
