@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<h1 style="font-size: xx-large; font-family: Arial; margin-top: 2% ;text-align: center; color: cornflowerblue">SearchApp</h1>
+
+<form>
+    <br>
+    <label style="font-size: x-large; font-family: Arial; margin-left: 2%">Operatori</label><br>
+    <br><input id="ao" type="button" value="Alege operator" style="font-size: medium; font-family: Arial; margin-left: 2%">
+    <select onchange="memorare_operator()" id="operator" style="font-size: medium; margin-left: 2%" hidden>
+        <option></option>
+        <option id="==">"==" egal</option>
+        <option id="!=">"!=" nu este egal</option>
+        <option id=">">">" mai mare</option>
+        <option id="<">"<" mai mic</option>
+        <option id=">=">">=" mai mare sau egal</option>
+        <option id="<=">"<=" mai mic sau egal</option>
+    </select><br>
+<!--// cunoscut si sub numele de operator conditional, poate fi folosit pentru a inlocui if ... else in anumite scenarii. Are 3 operanzi(conditie, expresie1 si expresie2)
+// daca conditia este true, expresia 1 este executata, daca conditia este false, expresia 2 este executata.-->
+
+    <br>
+    <br><label style="font-size: x-large; font-family: Arial; margin-left: 2%">Introduce un set de numere</label><br>
+    <br><input id="it" type="button" value="Input Tablou" style="font-size: medium; font-family: Arial; margin-left: 2%">
+    <input id="text_it" type="text" value="" disabled style="font-size: medium; font-family: Arial; margin-left: 2%">
+    <input onclick="memorare_set_de_numere()" id="confirma" type="button" value="Confirma" style="font-size: medium; font-family: Arial;" hidden><br>
+
+    <br>
+    <br><label style="font-size: x-large; font-family: Arial; margin-left: 2%">Introduce o valoare de referinta</label><br>
+    <br><input id="sr" type="button" value="Stabileste Referinta" style="font-size: medium; font-family: Arial; margin-left: 2%">
+    <input id="text_sr" type="text" value="" style="font-size: medium; font-family: Arial; margin-left: 2%" hidden>
+    <input onclick="memorare_valoare_de_referinta()" id="confirma1" type="button" value="Confirma" style="font-size: medium; font-family: Arial;" hidden><br>
+
+    <br>
+    <br><input onclick="cautare_elemente()" id="cr" type="button" value="Cauta Referinta" style="font-size: medium; font-family: Arial; margin-left: 40%;">
+    <input id="reset" type="button" value="Reset" style="font-size: medium; font-family: Arial; margin-left: 2%">
+
+    <div class="myDiv">
+        <label style="font-size: x-large; font-family: Arial; color: cornflowerblue; margin-left: 2%">Rezultat</label>
+        <p style="font-size: large; margin-left: 2%" id="operator_ales"></p>
+        <p style="font-size: large; margin-left: 2%" id="set_de_numere"></p>
+        <p style="font-size: large; margin-left: 2%" id="valoare_de_referinta"></p>
+        <p style="font-size: large; margin-left: 2%" id="elemente_gasite"></p>
+    </div>
+
+</form>
+
+</body>
+
+<script>
+
+    document.getElementById("ao").addEventListener("click", function () {
+        document.getElementById("operator").removeAttribute("hidden")
+    })
+
+    document.getElementById("it").addEventListener("click", function () {
+        document.getElementById("text_it").disabled = false
+    })
+
+    document.getElementById("sr").addEventListener("click", function () {
+        document.getElementById("text_sr").removeAttribute("hidden")
+    })
+
+    document.getElementById("it").addEventListener("click", function () {
+        document.getElementById("confirma").removeAttribute("hidden")
+    })
+
+    document.getElementById("confirma").addEventListener("click", function () {
+        document.getElementById("text_it").value = ""
+    })
+
+    document.getElementById("sr").addEventListener("click", function () {
+        document.getElementById("confirma1").removeAttribute("hidden")
+    })
+
+    document.getElementById("confirma1").addEventListener("click", function () {
+        document.getElementById("text_sr").value = ""
+    })
+
+    document.getElementById("text_it").addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault()
+            document.getElementById("confirma").click()
+        }
+    })
+
+    document.getElementById("text_sr").addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault()
+            document.getElementById("confirma1").click()
+        }
+    })
+
+    let operator
+
+    function memorare_operator () {
+        let a = document.getElementById("operator").selectedIndex
+        let b = document.getElementById("operator").options
+        if (b[a] === b[1]) {
+            operator = alege_operator.egal
+            document.getElementById("operator_ales").innerHTML = 'Operatorul ales este: "' + alege_operator.egal + '" egal'
+        } else if (b[a] === b[2]) {
+            operator = alege_operator.nu_este_egal
+            document.getElementById("operator_ales").innerHTML = 'Operatorul ales este: "' + alege_operator.nu_este_egal + '" nu este egal'
+        } else if (b[a] === b[3]) {
+            operator = alege_operator.mai_mare
+            document.getElementById("operator_ales").innerHTML = 'Operatorul ales este: "' + alege_operator.mai_mare + '" mai mare'
+        } else if (b[a] === b[4]) {
+            operator = alege_operator.mai_mic
+            document.getElementById("operator_ales").innerHTML = 'Operatorul ales este: "' + alege_operator.mai_mic + '" mai mic'
+        } else if (b[a] === b[5]) {
+            operator = alege_operator.mai_mare_sau_egal
+            document.getElementById("operator_ales").innerHTML = 'Operatorul ales este: "' + alege_operator.mai_mare_sau_egal + '" mai mare sau egal'
+        } else if (b[a] === b[6]) {
+            operator = alege_operator.mai_mic_sau_egal
+            document.getElementById("operator_ales").innerHTML = 'Operatorul ales este: "' + alege_operator.mai_mic_sau_egal + '" mai mic sau egal'
+        }
+        console.log("operator")
+        console.log(operator)
+    }
+
+    let set_de_numere = []
+    console.log("set_de_numere")
+    console.log(set_de_numere)
+
+    function memorare_set_de_numere () {
+        let c = document.getElementById("text_it").value
+        set_de_numere.push(c)
+        for (let i = 0; i < set_de_numere.length; i++) {
+            document.getElementById("set_de_numere").innerHTML = "Set de numere: " + set_de_numere
+        }
+    }
+
+    let valoare_de_referinta = []
+    console.log("valoare_de_referinta")
+    console.log(valoare_de_referinta)
+
+    function memorare_valoare_de_referinta () {
+        let d = document.getElementById("text_sr").value
+        valoare_de_referinta.push(d)
+        for (let i = 0; i < valoare_de_referinta.length; i++) {
+            document.getElementById("valoare_de_referinta").innerHTML = "Valoare de referinta: " + valoare_de_referinta
+        }
+    }
+
+    function cautare_elemente () {
+        cauta_referinta.set_de_numere = set_de_numere
+        cauta_referinta.valoare_de_referinta = valoare_de_referinta
+        cauta_referinta.operator = operator
+        let element_gasit = []
+
+        if(operator === alege_operator.egal) {
+            for (let i = 0; i < set_de_numere.length; i++) {
+                if (set_de_numere[i] == valoare_de_referinta) {
+                    element_gasit.push(set_de_numere[i])
+                    console.log(set_de_numere[i] + " == " + valoare_de_referinta)
+                    cauta_referinta.element_gasit = element_gasit
+                    document.getElementById("elemente_gasite").innerHTML = "Elemente gasite: " + cauta_referinta.element_gasit
+                }
+            }
+        } else if (operator === alege_operator.nu_este_egal) {
+            for ( let i = 0; i < set_de_numere.length; i++) {
+                if (set_de_numere[i] != valoare_de_referinta) {
+                    element_gasit.push(set_de_numere[i])
+                    console.log(set_de_numere[i] + " != " + valoare_de_referinta)
+                    cauta_referinta.element_gasit = element_gasit
+                    document.getElementById("elemente_gasite").innerHTML = "Elemente gasite: " + cauta_referinta.element_gasit
+                }
+            }
+        } else if (operator === alege_operator.mai_mare) {
+            for (let i = 0; i < set_de_numere.length; i++) {
+                if (set_de_numere[i] > valoare_de_referinta) {
+                    element_gasit.push(set_de_numere[i])
+                    console.log(set_de_numere[i] + " > " + valoare_de_referinta)
+                    cauta_referinta.element_gasit = element_gasit
+                    document.getElementById("elemente_gasite").innerHTML = "Elemente gasite: " + cauta_referinta.element_gasit
+                }
+            }
+        } else if (operator === alege_operator.mai_mic) {
+            for (let i = 0; i < set_de_numere.length; i++) {
+                if (set_de_numere[i] < valoare_de_referinta) {
+                    element_gasit.push(set_de_numere[i])
+                    console.log(set_de_numere[i] + " < " + valoare_de_referinta)
+                    cauta_referinta.element_gasit = element_gasit
+                    document.getElementById("elemente_gasite").innerHTML = "Elemente gasite: " + cauta_referinta.element_gasit
+                }
+            }
+        } else if (operator === alege_operator.mai_mare_sau_egal) {
+            for (let i = 0; i < set_de_numere.length; i++) {
+                if (set_de_numere[i] >= valoare_de_referinta) {
+                    element_gasit.push(set_de_numere[i])
+                    console.log(set_de_numere[i] + " >= " + valoare_de_referinta)
+                    cauta_referinta.element_gasit = element_gasit
+                    document.getElementById("elemente_gasite").innerHTML = "Elemente gasite: " + cauta_referinta.element_gasit
+                }
+            }
+        } else if (operator === alege_operator.mai_mic_sau_egal) {
+            for (let i = 0; i < set_de_numere.length; i++) {
+                if (set_de_numere[i] <= valoare_de_referinta) {
+                    element_gasit.push(set_de_numere[i])
+                    console.log(set_de_numere[i] + " <= " + valoare_de_referinta)
+                    cauta_referinta.element_gasit = element_gasit
+                    document.getElementById("elemente_gasite").innerHTML = "Elemente gasite: " + cauta_referinta.element_gasit
+                }
+            }
+        }
+        console.log(cauta_referinta)
+    }
+
+    //Obiecte
+
+    let alege_operator = {
+        egal: "==",
+        nu_este_egal: '!=',
+        mai_mare: '>',
+        mai_mic: '<',
+        mai_mare_sau_egal: '>=',
+        mai_mic_sau_egal: '<=',
+        memorare () {
+
+        },
+        afisare () {
+
+        }
+    }
+
+    let input_tablou = {
+        set_de_numere: '',
+        memorare () {
+
+        }
+    }
+
+    let stabilieste_referinta = {
+        valoare_de_referinta: '',
+        afisare () {
+
+        }
+    }
+
+    let valoare_default = {
+        operator: '0',
+        set_de_numere: '0',
+        valoare_de_referinta: '0'
+    }
+
+    let cauta_referinta = {
+        set_de_numere: '',
+        valoare_de_referinta: '',
+        operator: '',
+        element_gasit: '',
+        cauta () {
+
+        }
+    }
+
+
+</script>
+
+</html>
