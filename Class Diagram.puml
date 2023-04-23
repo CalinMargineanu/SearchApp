@@ -4,42 +4,59 @@ class Landing_page {
 }
 
 class AlegeOperator {
-memorare()
-}
+        egal: "==",
+        valoare_egala_si_de_tip_egal: '===',
+        nu_este_egal: '!=',
+        valoarea_nu_este_egala_sau_tipul_nu_este_egal: '!==',
+        mai_mare: '>',
+        mai_mic: '<',
+        mai_mare_sau_egal: '>=',
+        mai_mic_sau_egal: '<=',
+        ternar: '?'
+        memorare()
+        afisare()
+        }
+
 AlegeOperator "1" --* "1" Landing_page
 
 class InputTablou {
-memorare()
-}
+        set_de_numere: ' '
+        memorare()
+        }
+
 InputTablou "1" --* "1" Landing_page
 
 class StabilesteReferinta {
-afisare_element()
-}
+        valoare_de_referinta: ' '
+        afisare()
+        }
+
 StabilesteReferinta "1" --* "1" Landing_page
 
 class CautaReferinta {
-set_de_numere_introduse
-valoare_de_referinta_introdusa
-operator_de_comparatie_selectat
-cauta()
-}
-CautaReferinta "1" --* "1" Landing_page
+        set_de_numeres: ' ',
+        valoare_de_referinta: ' ',
+        operator: ' ',
+        element_gasit: ' '
+        cauta()
+        }
 
-class element_gasit {
-}
-element_gasit "1...n" --* "1" Landing_page
+CautaReferinta "1" --* "1" Landing_page
 
 class mesaj {
 }
 mesaj "1" --* "1" Landing_page
 
-class Reset {
+class buton_Reset {
 }
-Reset "1" --* "1" Landing_page
+buton_Reset "1" --* "1" Landing_page
 
 class valoare_default {
-}
+        operator: ' ',
+        set_de_numere: ' ',
+        valoare_de_referinta: ' '
+        }
+
 valoare_default "1" --* "1" AlegeOperator
 valoare_default "1" --* "1" StabilesteReferinta
 valoare_default "1" --* "1" InputTablou
