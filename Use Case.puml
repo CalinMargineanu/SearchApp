@@ -3,13 +3,14 @@
 left to right direction
 
 Utilizatorul --> (se afiseaza o lista cu operatori de comparatie JS) : selecteaza optiunea \n AlegeOperator
-Utilizatorul --> (se afiseaza o lista cu operatori de comparatie JS) : selecteaza \n un operator
-(se afiseaza o lista cu operatori de comparatie JS) -> (operatorul selectat \n va fi memorat)
+Utilizatorul --> (operatorul selectat \n va fi memorat) : selecteaza \n un operator
+
 Utilizatorul --> (optiunea va permite utilizatorului \n introducerea unui set de 10 numere) : selecteaza optiunea \n InputTablou
-Utilizatorul --> (optiunea va permite utilizatorului \n introducerea unui set de 10 numere) : introduce \n un set de numere
-(optiunea va permite utilizatorului \n introducerea unui set de 10 numere) -> (setul de numere \n vor fi memorate)
-Utilizatorul --> (se va afisa un element de input \n prin care utilizatorul va introduce o valoare, \n valoarea de referinta) : selecteaza \n StabilesteReferinta
-Utilizatorul --> (se va afisa un element de input \n prin care utilizatorul va introduce o valoare, \n valoarea de referinta) : introduce \n o valoare de referinta
+Utilizatorul --> (setul de numere \n vor fi memorate) : introduce \n un set de numere
+
+Utilizatorul --> (se va afisa un element de input) : selecteaza \n StabilesteReferinta
+Utilizatorul --> (valoarea de referinta \n va fi memorata) : introduce \n o valoare de referinta
+
 Utilizatorul --> (în setul de numere introdus de utilizator \n se vor caută numerele care corespund condiției stabilite de utilizator \n prin selecția operatorului și a valorii de referinta) : apasa butonul \n CautaReferinta
 (în setul de numere introdus de utilizator \n se vor caută numerele care corespund condiției stabilite de utilizator \n prin selecția operatorului și a valorii de referinta) --> (se afișeaza elementele găsite)
 (în setul de numere introdus de utilizator \n se vor caută numerele care corespund condiției stabilite de utilizator \n prin selecția operatorului și a valorii de referinta) --> (se afișeaza un mesaj de eroare \n în cazul în care nu exista elemente găsite)
